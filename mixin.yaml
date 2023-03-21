@@ -1,0 +1,32 @@
+mixin:
+  dns: #减少dns污染
+    enable: true
+    enhanced-mode: fake-ip #延迟更低
+    nameserver: #尽量别用外国的DNS，让代理端处理境外域名
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+      - https://dns.twnic.tw/dns-query
+      - https://dns.adguard.com/dns-query
+      - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.quad9.net/dns-query
+    fallback: [] #有污染的情况下使用，但是已经开启了fake-ip就没必要用了
+    fake-ip-filter: #让微软系和一些stun走直连
+      - +.stun.*.*
+      - +.stun.*.*.*
+      - +.stun.*.*.*.*
+      - +.stun.*.*.*.*.*
+      - "*.n.n.srv.nintendo.net"
+      - +.stun.playstation.net
+      - xbox.*.*.microsoft.com
+      - "*.*.xboxlive.com"
+      - "*.msftncsi.com"
+      - "*.msftconnecttest.com"
+      - WORKGROUP
+  tun: #实现全局代理
+    enable: true
+    stack: gvisor
+    auto-route: true
+    auto-detect-interface: true
+    dns-hijack:
+      - any:53
