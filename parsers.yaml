@@ -4,10 +4,12 @@ parsers: # array
     # 删除服务商提供的策略组和规则
       code: |
         module.exports.parse = (raw, { yaml }) => {
-          const rawObj = yaml.parse(raw)
-          const groups = []
-          const rules = []
-          return yaml.stringify({ ...rawObj, 'proxy-groups': groups, rules })
+          # const rawObj = yaml.parse(raw)
+          # const groups = []
+          # const rules = []
+          # return yaml.stringify({ ...rawObj, 'proxy-groups': groups, rules })
+          const proxies = yaml.parse(raw).proxies
+          return yaml.stringify({ 'proxies': proxies })
         } 
     # 建立自己的配置
       yaml:
@@ -125,7 +127,7 @@ parsers: # array
           - proxy-groups.🤖 Google.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英)+(.*)$
           - proxy-groups.🕹️ Game.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英)+(.*)$
           - proxy-groups.✈️ Telegram.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英)+(.*)$
-          - proxy-groups.📺 BiliBili.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英)+(.*)$
+          - proxy-groups.📺 BiliBili.proxies.0+[]groupNames|^(.*)(港|台)+(.*)$
           - proxy-groups.🎵 网易云音乐.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英)+(.*)$
           - proxy-groups.⚡ 下载.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英)+(.*)$
           - proxy-groups.📰 国内网站.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英)+(.*)$
