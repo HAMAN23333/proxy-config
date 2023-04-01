@@ -5,9 +5,9 @@ mixin:
     nameserver: #尽量别用外国的DNS，让代理端处理代理域名
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
-    fallback: #有污染的情况下使用
       - https://cloudflare-dns.com/dns-query
       - https://dns.google/dns-query
+    fallback: []#有污染的情况下使用，但因为使用了fake-ip所以可以不用
     fallback-filter:
       geoip: true
       geoip-code: CN
