@@ -2,20 +2,23 @@ mixin:
   dns: #减少dns污染
     enable: true
     enhanced-mode: fake-ip #延迟更低
-    nameserver: #尽量别用外国的DNS，让代理端处理境外域名
-      - https://doh.pub/dns-query
+    nameserver: #尽量别用外国的DNS，让代理端处理代理域名
       - https://dns.alidns.com/dns-query
-      - https://dns.twnic.tw/dns-query
-      - https://dns.adguard.com/dns-query
-      - https://dns.google/dns-query
+      - https://doh.pub/dns-query
+    fallback: #有污染的情况下使用
       - https://cloudflare-dns.com/dns-query
-      - https://dns.quad9.net/dns-query
-    fallback: [] #有污染的情况下使用，但是已经开启了fake-ip就没必要用了
+      - https://dns.google/dns-query
+    fallback-filter:
+      geoip: false
+      geoip-code: CN
+      ipcidr:
+        - 240.0.0.0/4 # 该IP段基本是已经被污染的ip端
     fake-ip-filter: #让微软系和一些stun走直连
       - +.stun.*.*
       - +.stun.*.*.*
       - +.stun.*.*.*.*
       - +.stun.*.*.*.*.*
+      - localhost.ptlogin2.qq.com
       - "*.n.n.srv.nintendo.net"
       - +.stun.playstation.net
       - xbox.*.*.microsoft.com
@@ -30,3 +33,4 @@ mixin:
     auto-detect-interface: true
     dns-hijack:
       - any:53
+      - tcp://any:53
