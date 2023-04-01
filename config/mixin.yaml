@@ -9,10 +9,13 @@ mixin:
       - https://cloudflare-dns.com/dns-query
       - https://dns.google/dns-query
     fallback-filter:
-      geoip: false
+      geoip: true
       geoip-code: CN
       ipcidr:
         - 240.0.0.0/4 # 该IP段基本是已经被污染的ip端
+      domain:
+        - '+.google.com'
+        - '+.youtube.com' 
     fake-ip-filter: #让微软系和一些stun走直连
       - +.stun.*.*
       - +.stun.*.*.*
