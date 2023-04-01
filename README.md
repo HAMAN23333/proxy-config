@@ -43,7 +43,7 @@ rule-providers:
  
 rules:
   - RULE-SET,proxy-domain,Proxy
-  - RULE-SET,cn-cidr,DIRECT,no-resolve # ipcidr 类规则集支持 no-resolve 参数
+  - RULE-SET,cn-cidr,DIRECT
 ```
 
 > domain 和 ipcidr 两种类型的规则集合专门针对大量数据进行了优化，在规则条目较多时建议优先选择。
