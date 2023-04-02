@@ -175,118 +175,118 @@ parsers: # array
         GitHub:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml"
           interval: 86400
           path: ./ruleset/GitHub.yaml
 
         Microsoft:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
           interval: 86400
           path: ./ruleset/Microsoft.yaml
         
         Apple_Domain:
           type: http
           behavior: domain
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Domain.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Apple/Apple_Domain.yaml"
           interval: 86400
           path: ./ruleset/Apple_Domain.yaml
 
         Apple:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Apple/Apple.yaml"
           interval: 86400
           path: ./ruleset/Apple.yaml
 
         Game:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Game/Game.yaml"
           interval: 86400
           path: ./ruleset/Game.yaml
 
         BiliBili:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml"
           interval: 86400
           path: ./ruleset/BiliBili.yaml
         
         YouTube:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
           interval: 86400
           path: ./ruleset/YouTube.yaml
 
         Google:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Google/Google.yaml"
           interval: 86400
           path: ./ruleset/Google.yaml
           
         Bahamut:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml"
           interval: 86400
           path: ./ruleset/Bahamut.yaml
 
         Telegram:
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
           interval: 86400
           path: ./ruleset/Telegram.yaml
           
         ChinaMax_Domain: # 中国大陆 IP 地址列表
           type: http
           behavior: domain
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml"
           path: ./ruleset/ChinaMax_Domain.yaml
           interval: 86400
 
         ChinaMax_IP: # 中国大陆 IP 地址列表
           type: http
           behavior: ipcidr
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_IP.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_IP.yaml"
           path: ./ruleset/ChinaMax_IP.yaml
           interval: 86400
 
         ChinaMax: # 中国大陆 IP 地址列表
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax.yaml"
           path: ./ruleset/ChinaMax.yaml
           interval: 86400
 
         Lan: 
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Lan/Lan.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Lan/Lan.yaml"
           path: ./ruleset/Lan.yaml
           interval: 86400
 
         Download: 
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Download/Download.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Download/Download.yaml"
           path: ./ruleset/Download.yaml
           interval: 86400
 
         PrivateTracker: 
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PrivateTracker/PrivateTracker.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/PrivateTracker/PrivateTracker.yaml"
           path: ./ruleset/PrivateTracker.yaml
           interval: 86400
 
         GameDownloadCN: 
           type: http
           behavior: classical
-          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.yaml"
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.yaml"
           path: ./ruleset/GameDownloadCN.yaml
           interval: 86400
