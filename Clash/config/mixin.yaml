@@ -5,8 +5,6 @@ mixin:
     nameserver: #尽量别用外国的DNS，让代理端处理代理域名
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
-      - https://cloudflare-dns.com/dns-query
-      - https://dns.google/dns-query
     fallback: [] #有污染的情况下使用，但因为使用了fake-ip所以不要用，否则分流规则会直接失效(返回的全部是IP，有概率直接跑炸内存)
     fake-ip-filter: #让微软系和一些stun走直连
       - +.stun.*.*
