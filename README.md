@@ -55,3 +55,7 @@ rules:
 # Quanmtumult X 和 Shadowrocket (实验性)
 
 直接导入配置即可
+
+# 其他
+
+国内相关规则已自带 GEOIP 相关参数，可以不用调用 GEOIP 了
