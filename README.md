@@ -1,4 +1,4 @@
-# Clash-config
+# Clash
 
 已包含 mixin 和 parsers 配置，可以直接使用
 
@@ -23,9 +23,11 @@
 - Google系
 - 巴哈姆特
 - 常用境外游戏平台
-- 下载(包含了种子和游戏下载的规则，谨慎使用 BitTorrent 防止侵权问题导致代理服务器被 ban)
+- 下载(包含了种子的规则，谨慎使用 BitTorrent 防止侵权问题导致代理服务器被 ban)
 - Telegram
 - 境内网站
+
+### 自行修改
 
 为避免一大坨规则扔进去导致性能浪费，用了 [rule-provider](https://lancellc.gitbook.io/clash/clash-config-file/rule-provider)，跟据 [Stash](https://stash.wiki/faq/effective-stash#%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E9%9B%86%E5%90%88) 手册得知，只要正确配置，即使超过几十万条规则依然不会产生大的开销，还方便维护
 
@@ -49,3 +51,7 @@ rules:
 > domain 和 ipcidr 两种类型的规则集合专门针对大量数据进行了优化，在规则条目较多时建议优先选择。
 >
 > 不建议使用内含大量规则的 classical 规则集合，会显著提高 Stash 内存占用。
+
+# Quanmtumult X 和 Shadowrocket (实验性)
+
+直接导入配置即可
