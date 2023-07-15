@@ -97,7 +97,7 @@ rules:
 
 ### 禁用 QUIC 协议
 
-HTTP3 / QUIC 协议基于 UDP，在目前的网络环境下较为低效，建议通过 [Script Shortcuts](https://github.com/HAMAN23333/Clash-config/edit/main/README.md#script-shortcuts-%E8%84%9A%E6%9C%AC%E6%8D%B7%E5%BE%84) 禁用。
+HTTP3 / QUIC 协议基于 UDP，在目前的网络环境下较为低效，建议通过 [Script Shortcuts](#可嵌套规则组) 禁用。
 
 ```yaml
 script:
