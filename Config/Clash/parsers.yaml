@@ -141,7 +141,7 @@ parsers: # array
         - proxy-groups.🇺🇲 美国.proxies.0+[]proxyNames|^(.*)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|🇺🇲)+(.*)$
         - proxy-groups.🇸🇬 狮城.proxies.0+[]proxyNames|^(.*)(新加坡|坡|狮城|SG|Singapore|🇸🇬)+(.*)$
         - proxy-groups.🇩🇪 德国.proxies.0+[]proxyNames|^(.*)(德|Germany|DE|柏林|慕尼黑|🇩🇪)+(.*)$
-        - proxy-groups.🇬🇧 英国.proxies.0+[]proxyNames|^(.*)(英|Britain|GB|伦敦|🇬🇧)+(.*)$
+        - proxy-groups.🇬🇧 英国.proxies.0+[]proxyNames|^(.*)(英|Britain|伦敦|🇬🇧)+(.*)$
         - proxy-groups.🇦🇺 澳洲.proxies.0+[]proxyNames|^(.*)(澳|Australia|AU|墨尔本|悉尼|🇦🇺)+(.*)$
         
         - proxy-groups.🔰 选择节点.proxies=[]proxyNames # 向指定策略组添加订阅中的节点名，可使用正则过滤
@@ -168,6 +168,10 @@ parsers: # array
         - DOMAIN,clash.razord.top,DIRECT
         - DOMAIN,yacd.haishan.me,DIRECT
         - RULE-SET,Lan,DIRECT
+        - if: (not(match_provider("Direct"))) and (match_provider("Advertising") or match_provider("Advertising_Domain")) # 逻辑判断，需要新版本clash premium 2023.5.19版本以上内核的支持
+          name: AD
+          rules: 
+            - MATCH,REJECT
         - RULE-SET,Download,⚡ 下载
         - RULE-SET,PrivateTracker,⚡ 下载
         - RULE-SET,Game,🕹️ Game
@@ -176,17 +180,38 @@ parsers: # array
         - RULE-SET,YouTube,🤖 Google
         - RULE-SET,Google,🤖 Google
         - RULE-SET,Telegram,✈️ Telegram
-        - RULE-SET,BiliBili,📺 BiliBili
         - RULE-SET,Apple,🍎 Apple
         - RULE-SET,Apple_Domain,🍎 Apple
+        - RULE-SET,BiliBili,📺 BiliBili
         - RULE-SET,Bahamut,🇹🇼 台湾
         - RULE-SET,ChinaMax,📰 国内网站
-        - RULE-SET,ChinaMax_Domain,📰 国内网站
         - RULE-SET,ChinaMax_IP,📰 国内网站
+        - RULE-SET,ChinaMax_Domain,📰 国内网站
         - MATCH,🐟 漏网之鱼 # 规则之外的
   # 添加规则集
       mix-rule-providers: 
-          
+
+        Direct: # 广告放行
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Direct/Direct.yaml"
+          interval: 86400
+          path: ./ruleset/Direct.yaml  
+
+        Advertising_Domain:
+          type: http
+          behavior: domain
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Advertising/Advertising_Domain.yaml"
+          interval: 86400
+          path: ./ruleset/Advertising_Domain.yaml 
+
+        Advertising:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Advertising/Advertising.yaml"
+          interval: 86400
+          path: ./ruleset/Advertising.yaml        
+
         GitHub:
           type: http
           behavior: classical
