@@ -28,7 +28,7 @@ sniffer:
 
 tun:
   enable: true
-  stack: system
+  stack: mixed
   dns-hijack:
     - "any:53"
     - tcp://any:53
