@@ -1,23 +1,26 @@
-# Clash
-
-已包含 mixin 和 parsers 配置，可以直接使用
-
-WIKI教程如下:
+# WIKI
 
 - https://docs.cfw.lbyczf.com/contents/mixin.html
 - https://lancellc.gitbook.io/clash/
 - https://dreamacro.github.io/clash/zh_CN/
 - https://stash.wiki/
+- https://wiki.metacubex.one/
+
+# Clash Premium
+
+已包含 mixin 和 parsers 配置，可以直接使用
 
 ## mixin
 
-已经配置好了 dns 和 tun 参数，分别实现减少dns污染和全局代理，不要用 redir-host 了，未来版本不会支持了
+已经配置好了 dns 和 tun 参数，分别实现减少dns污染和全局代理，Clash Premium 不要用 redir-host 了，未来版本不会支持了
 
 > since redir-host brings a lot of misunderstandings and problems (some of which are even hard to find). I decided to remove it. It is only used in the fake-ip-filter for a few domain name mappings. I know that it can be bypassed and "recovered" in fake-ip mode. If fake-ip-filter finds that it has been abused, I will delete the domain mapping mode completely.
 
 关于为什么不在 dns 中添加 fallback 详见 https://github.com/Dreamacro/clash/issues/642#issuecomment-816448986
 
-关于 fake-ip 导致一些即时通信无法正常使用的解决方式为 fake-ip-filter 里添加白名单 https://github.com/Dreamacro/clash/issues/1644#issuecomment-927270223
+关于 fake-ip 导致一些即时通信无法正常使用的解决方法 https://github.com/Dreamacro/clash/issues/1644#issuecomment-927270223
+
+WSA 间歇性断连的解决方法 https://github.com/zzzgydi/clash-verge/issues/846#issuecomment-1784000198
 
 ## parsers
 
@@ -72,8 +75,6 @@ rules:
 
 ### 高效规则集合
 
-为避免一大坨规则扔进去导致性能浪费，用了 Rule-Provider，即使超过几十万条规则依然不会产生大的开销。
-
 ```yaml
 rule-providers:
   proxy-domain:
@@ -95,24 +96,7 @@ rules:
 >
 > 不建议使用内含大量规则的 classical 规则集合，会显著提高 Stash 内存占用。
 
-### 禁用 QUIC 协议
-
-HTTP3 / QUIC 协议基于 UDP，在目前的网络环境下较为低效，建议通过 [Script Shortcuts](#可嵌套规则组) 禁用。
-
-```yaml
-script:
-  shortcuts:
-    # 4483 与 9305 为 BiliBili 的 QUIC CDN
-    quic: network == 'udp' and (dst_port == 443 or dst_port == 4483 or dst_port == 9305)
- 
-rules:
-  - SCRIPT,quic,REJECT
-```
-
 # Quanmtumult X 和 Shadowrocket (实验性)
 
-直接导入配置即可
-
-# 其他
-
-国内相关规则已自带 GEOIP 相关参数，可以不用调用 GEOIP 了
+https://cdn.jsdelivr.net/gh/HAMAN23333/Proxy-Config@main/Config/QuantumultX/config.conf
+https://cdn.jsdelivr.net/gh/HAMAN23333/Proxy-Config@main/Config/Shadowrocket/RuleSet.conf
