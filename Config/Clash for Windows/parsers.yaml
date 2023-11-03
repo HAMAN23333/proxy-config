@@ -66,56 +66,35 @@ parsers: # array
             - 🔰 选择节点 
             - DIRECT
 
-        - name: 🇭🇰 香港
+        - name: 香港
           type: fallback
           url: http://www.gstatic.com/generate_204
           interval: 86400
           proxies:
             - REJECT
 
-        - name: 🇹🇼 台湾
+        - name: 台湾
           type: fallback
           url: http://www.gstatic.com/generate_204
           interval: 86400
           proxies:
             - REJECT
 
-        - name: 🇯🇵 日本
+        - name: 日本
           type: fallback
           url: http://www.gstatic.com/generate_204
           interval: 86400
           proxies:
             - REJECT
 
-        - name: 🇺🇲 美国
+        - name: 美国
           type: fallback
           url: http://www.gstatic.com/generate_204
           interval: 86400
           proxies:
             - REJECT
 
-        - name: 🇸🇬 狮城
-          type: fallback
-          url: http://www.gstatic.com/generate_204
-          interval: 86400
-          proxies:
-            - REJECT
-
-        - name: 🇩🇪 德国
-          type: fallback
-          url: http://www.gstatic.com/generate_204
-          interval: 86400
-          proxies:
-            - REJECT
-
-        - name: 🇬🇧 英国
-          type: fallback
-          url: http://www.gstatic.com/generate_204
-          interval: 86400
-          proxies:
-            - REJECT
-
-        - name: 🇦🇺 澳洲
+        - name: 狮城
           type: fallback
           url: http://www.gstatic.com/generate_204
           interval: 86400
@@ -135,25 +114,22 @@ parsers: # array
            # - 节点名称或其他分组套娃
           
       commands:
-        - proxy-groups.🇭🇰 香港.proxies.0+[]proxyNames|^(.*)(港|HK|Hong Kong|🇭🇰)+(.*)$
-        - proxy-groups.🇹🇼 台湾.proxies.0+[]proxyNames|^(.*)(台|新北|彰化|TW|Taiwan|🇹🇼)+(.*)$
-        - proxy-groups.🇯🇵 日本.proxies.0+[]proxyNames|^(.*)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|🇯🇵)+(.*)$
-        - proxy-groups.🇺🇲 美国.proxies.0+[]proxyNames|^(.*)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|🇺🇲)+(.*)$
-        - proxy-groups.🇸🇬 狮城.proxies.0+[]proxyNames|^(.*)(新加坡|坡|狮城|SG|Singapore|🇸🇬)+(.*)$
-        - proxy-groups.🇩🇪 德国.proxies.0+[]proxyNames|^(.*)(德|Germany|DE|柏林|慕尼黑|🇩🇪)+(.*)$
-        - proxy-groups.🇬🇧 英国.proxies.0+[]proxyNames|^(.*)(英|Britain|伦敦|🇬🇧)+(.*)$
-        - proxy-groups.🇦🇺 澳洲.proxies.0+[]proxyNames|^(.*)(澳|Australia|AU|墨尔本|悉尼|🇦🇺)+(.*)$
+        - proxy-groups.香港.proxies.0+[]proxyNames|^(.*)(港|HK|Hong Kong|🇭🇰)+(.*)$
+        - proxy-groups.台湾.proxies.0+[]proxyNames|^(.*)(台|新北|彰化|TW|Taiwan)+(.*)$
+        - proxy-groups.日本.proxies.0+[]proxyNames|^(.*)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|🇯🇵)+(.*)$
+        - proxy-groups.美国.proxies.0+[]proxyNames|^(.*)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|🇺🇲)+(.*)$
+        - proxy-groups.狮城.proxies.0+[]proxyNames|^(.*)(新加坡|坡|狮城|SG|Singapore|🇸🇬)+(.*)$
         
         - proxy-groups.🔰 选择节点.proxies=[]proxyNames # 向指定策略组添加订阅中的节点名，可使用正则过滤
-        - proxy-groups.🔰 选择节点.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英|澳)+(.*)$
-        - proxy-groups.🍎 Apple.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英|澳)+(.*)$
-        - proxy-groups.💻 Microsoft.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英|澳)+(.*)$
-        - proxy-groups.🤖 Google.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英|澳)+(.*)$
-        - proxy-groups.🕹️ Game.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英|澳)+(.*)$
-        - proxy-groups.✈️ Telegram.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英|澳)+(.*)$
+        - proxy-groups.🔰 选择节点.proxies.0+[]groupNames|^(.*)(港|日|美|台|狮)+(.*)$
+        - proxy-groups.🍎 Apple.proxies.0+[]groupNames|^(.*)(港|日|美|台|狮)+(.*)$
+        - proxy-groups.💻 Microsoft.proxies.0+[]groupNames|^(.*)(港|日|美|台|狮)+(.*)$
+        - proxy-groups.🤖 Google.proxies.0+[]groupNames|^(.*)(港|日|美|台|狮)+(.*)$
+        - proxy-groups.🕹️ Game.proxies.0+[]groupNames|^(.*)(港|日|美|台|狮)+(.*)$
+        - proxy-groups.✈️ Telegram.proxies.0+[]groupNames|^(.*)(港|日|美|台|狮)+(.*)$
         - proxy-groups.📺 BiliBili.proxies.0+[]groupNames|^(.*)(港|台)+(.*)$
-        - proxy-groups.⚡ 下载.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英|澳)+(.*)$
-        - proxy-groups.📰 国内网站.proxies.0+[]groupNames|^(.*)(港|德|日|美|台|狮|英|澳)+(.*)$
+        - proxy-groups.⚡ 下载.proxies.0+[]groupNames|^(.*)(港|日|美|台|狮)+(.*)$
+        - proxy-groups.📰 国内网站.proxies.0+[]groupNames|^(.*)(港|日|美|台|狮)+(.*)$
         # - proxy-groups.🔰 选择节点.proxies.0+DIRECT # 向指定分组第一个位置添加一个 DIRECT 节点名
         
         # 一些可能用到的正则过滤节点示例，使分组更细致
@@ -165,25 +141,26 @@ parsers: # array
         
   # 添加规则
       prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
-        - DOMAIN,clash.razord.top,DIRECT
-        - DOMAIN,yacd.haishan.me,DIRECT
         - RULE-SET,Lan,DIRECT
-        - if: (not(match_provider("Direct"))) and (match_provider("Advertising") or match_provider("Advertising_Domain")) # 逻辑判断，需要新版本clash premium 2023.5.19版本以上内核的支持
+        - RULE-SET,SteamCN,⚡ 下载
+        - RULE-SET,GameDownloadCN,⚡ 下载
+        - RULE-SET,GameDownload,⚡ 下载
+        - RULE-SET,Game,🕹️ Game
+        - RULE-SET,Download,⚡ 下载
+        - RULE-SET,PrivateTracker,⚡ 下载
+        - RULE-SET,Apple,🍎 Apple
+        - RULE-SET,Apple_Domain,🍎 Apple
+        - if: (not(match_provider("Direct"))) and (match_provider("Advertising") or match_provider("Advertising_Domain"))
           name: AD
           rules: 
             - MATCH,REJECT
-        - RULE-SET,Download,⚡ 下载
-        - RULE-SET,PrivateTracker,⚡ 下载
-        - RULE-SET,Game,🕹️ Game
         - RULE-SET,GitHub,💻 Microsoft
         - RULE-SET,Microsoft,💻 Microsoft
         - RULE-SET,YouTube,🤖 Google
         - RULE-SET,Google,🤖 Google
         - RULE-SET,Telegram,✈️ Telegram
-        - RULE-SET,Apple,🍎 Apple
-        - RULE-SET,Apple_Domain,🍎 Apple
         - RULE-SET,BiliBili,📺 BiliBili
-        - RULE-SET,Bahamut,🇹🇼 台湾
+        - RULE-SET,Bahamut,台湾
         - RULE-SET,ChinaMax,📰 国内网站
         - RULE-SET,ChinaMax_IP,📰 国内网站
         - RULE-SET,ChinaMax_Domain,📰 国内网站
@@ -246,6 +223,27 @@ parsers: # array
           url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Game/Game.yaml"
           interval: 86400
           path: ./ruleset/Game.yaml
+
+        GameDownloadCN:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.yaml"
+          interval: 86400
+          path: ./ruleset/GameDownloadCN.yaml
+
+        GameDownload:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Game/GameDownload/GameDownload.yaml"
+          interval: 86400
+          path: ./ruleset/GameDownload.yaml
+
+        SteamCN:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/SteamCN/SteamCN.yaml"
+          interval: 86400
+          path: ./ruleset/SteamCN.yaml
 
         BiliBili:
           type: http
