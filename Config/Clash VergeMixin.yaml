@@ -2,23 +2,19 @@
 # The `Merge` format used to enhance profile
 
 mode: rule
-ipv6: true
-log-level: info
-allow-lan: true
-mixed-port: 19119
 unified-delay: true
 tcp-concurrent: true
-external-controller: 127.0.0.1:2952
 
 find-process-mode: strict
-global-client-fingerprint: firefox
 
 profile:
   store-selected: true
-  store-fake-ip: true
 
 sniffer:
   enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
   sniff:
     TLS:
       ports: [443, 8443]
@@ -28,10 +24,10 @@ sniffer:
 
 tun:
   enable: true
-  stack: mixed
+  stack: gvisor
   dns-hijack:
-    - "any:53"
-    - tcp://any:53
+    - 'any:53'
+    - 'tcp://any:53'
   auto-route: true
   auto-detect-interface: true
 
@@ -41,13 +37,33 @@ dns:
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: []
+  fake-ip-filter: 
+    - '*'
+    - '+.lan'
+    - '+.local'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - xbox.*.*.microsoft.com
+    - "*.*.xboxlive.com"
+    - '+.nvidia.com'
+    - '+.nvidia.cn'
+    - '+.nvgs.nvidia.com'
+    - '+.nvgs.nvidia.cn'
+    - router.asus.com
+    - www.asusrouter.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - WORKGROUP
   default-nameserver:
     - 119.29.29.29
     - 223.5.5.5
   nameserver:
-    - "tls://8.8.4.4#DNS"
-    - "tls://1.0.0.1#DNS"
+    - 'https://1.1.1.1/dns-query#DNS'
+    - 'https://dns.google/dns-query#DNS'
   proxy-server-nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
@@ -55,6 +71,5 @@ dns:
     "rule-set:ChinaMax,ChinaMax_Domain":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    # 直连
     "rule-set:Lan":
-      - 192.168.1.1 
+      - 192.168.50.1
