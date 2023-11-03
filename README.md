@@ -1,12 +1,11 @@
+# 暂时不建议使用 Clash For Windows 和相关项目
+
 # WIKI
 
-- https://docs.cfw.lbyczf.com/contents/mixin.html
-- https://lancellc.gitbook.io/clash/
-- https://dreamacro.github.io/clash/zh_CN/
 - https://stash.wiki/
 - https://wiki.metacubex.one/
 
-# Clash Premium
+# Clash For Windows (Clash Premium)
 
 已包含 mixin 和 parsers 配置，可以直接使用
 
@@ -16,15 +15,9 @@
 
 > since redir-host brings a lot of misunderstandings and problems (some of which are even hard to find). I decided to remove it. It is only used in the fake-ip-filter for a few domain name mappings. I know that it can be bypassed and "recovered" in fake-ip mode. If fake-ip-filter finds that it has been abused, I will delete the domain mapping mode completely.
 
-关于为什么不在 dns 中添加 fallback 详见 https://github.com/Dreamacro/clash/issues/642#issuecomment-816448986
-
-关于 fake-ip 导致一些即时通信无法正常使用的解决方法 https://github.com/Dreamacro/clash/issues/1644#issuecomment-927270223
-
 WSA 间歇性断连的解决方法 https://github.com/zzzgydi/clash-verge/issues/846#issuecomment-1784000198
 
 ## parsers
-
-预处理机场的配置文件，因为机场的配置太垃圾无法忍受所以按照别人的模板写了配置 https://github.com/Fndroid/clash_for_windows_pkg/issues/2193#issue-987352146
 
 实现了以下分流规则：
 - 广告、劫持、隐私拦截
@@ -37,9 +30,7 @@ WSA 间歇性断连的解决方法 https://github.com/zzzgydi/clash-verge/issues
 - Telegram
 - 境内网站
 
-### [可嵌套规则组](https://dreamacro.github.io/clash/zh_CN/premium/script-shortcuts.html)
-
-Clash Premium 2023.5.19（记不清了） 版本以上的内核支持了灵活的规则写法以实现逻辑判断等，有两种写法:
+### 可嵌套规则组
 
 ```yaml
 rules:
@@ -70,8 +61,6 @@ script:
 rules:
   - SCRIPT,quic,REJECT
 ```
-
-可参考 https://lancellc.gitbook.io/clash/clash-config-file/script/script-shortcut
 
 ### 高效规则集合
 
