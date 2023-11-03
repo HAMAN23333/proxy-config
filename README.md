@@ -88,4 +88,4 @@ rules:
 # Quanmtumult X 和 Shadowrocket (实验性)
 
 https://cdn.jsdelivr.net/gh/HAMAN23333/Proxy-Config@main/Config/QuantumultX/config.conf
-https://cdn.jsdelivr.net/gh/HAMAN23333/Proxy-Config@main/Config/Shadowrocket/RuleSet.conf
+https://cdn.jsdelivr.net/gh/HAMAN23333/Proxy-Config@main/Config/Shadowrocket.conf
