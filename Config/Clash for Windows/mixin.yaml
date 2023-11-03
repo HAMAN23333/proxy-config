@@ -7,17 +7,23 @@ mixin:
       - https://doh.pub/dns-query
     fallback: [] #有污染的情况下使用，但因为使用了fake-ip所以不要用，否则分流规则会直接失效(返回的全部是IP，有概率直接跑炸内存)
     fake-ip-filter: #让微软系和一些stun走直连
-      - +.stun.*.*
-      - +.stun.*.*.*
-      - +.stun.*.*.*.*
-      - +.stun.*.*.*.*.*
-      - localhost.ptlogin2.qq.com
-      - "*.n.n.srv.nintendo.net"
-      - +.stun.playstation.net
+      - '*'
+      - '+.lan'
+      - '+.local'
+      - '+.stun.*.*'
+      - '+.stun.*.*.*'
+      - '+.stun.*.*.*.*'
+      - '+.stun.*.*.*.*.*'
+      - "*.msftconnecttest.com"
+      - "*.msftncsi.com"
       - xbox.*.*.microsoft.com
       - "*.*.xboxlive.com"
-      - "*.msftncsi.com"
-      - "*.msftconnecttest.com"
+      - '+.nvidia.com'
+      - '+.nvidia.cn'
+      - '+.nvgs.nvidia.com'
+      - '+.nvgs.nvidia.cn'
+      - localhost.ptlogin2.qq.com
+      - localhost.sec.qq.com
       - WORKGROUP
   tun: #实现全局代理
     enable: true
