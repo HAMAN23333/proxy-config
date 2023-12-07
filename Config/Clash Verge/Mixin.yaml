@@ -5,10 +5,14 @@ mode: rule
 unified-delay: true
 tcp-concurrent: true
 
-find-process-mode: strict
-
 profile:
   store-selected: true
+
+geodata-mode: true
+geox-url:
+  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
 
 sniffer:
   enable: true
@@ -39,12 +43,9 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter: 
     - '*'
-    - '+.lan'
-    - '+.local'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
+    - '*.lan'
+    - '*.local'
+    - lb._dns-sd._udp.*.in-addr.arpa
     - "*.msftconnecttest.com"
     - "*.msftncsi.com"
     - xbox.*.*.microsoft.com
@@ -53,11 +54,46 @@ dns:
     - '+.nvidia.cn'
     - '+.nvgs.nvidia.com'
     - '+.nvgs.nvidia.cn'
+    - epdg.epc.aptg.com.tw
+    - epdg.epc.att.net
+    - epdg.mobileone.net.sg
+    - primgw.vowifina.spcsdns.net
+    - swu-loopback-epdg.qualcomm.com
+    - vowifi.jio.com
+    - weconnect.globe.com.ph
+    - wlan.three.com.hk
+    - wo.vzwwo.com
+    - epdg.epc.*.pub.3gppnetwork.org
+    - ss.epdg.epc.*.pub.3gppnetwork.org
+    - dengon.docomo.ne.jp
+    - dlinkap
+    - dlinkrouter
+    - edimax.setup
+    - fritz.box
+    - gateway.2wire.net
+    - miwifi.com
+    - my.firewall
+    - my.keenetic.net
+    - netis.cc
+    - pocket.wifi
+    - repeater.asus.com
+    - routerlogin.com
+    - routerlogin.net
+    - tendawifi.com
+    - tendawifi.net
+    - tplinklogin.net
+    - tplinkwifi.net
+    - tplinkrepeater.net
+    - oppowifi.com
+    - myrepeater.net
+    - mywifi.net
+    - setup.pix-link.net
+    - tplinkdeco.net
+    - tplinkextender.net
     - router.asus.com
     - www.asusrouter.com
     - localhost.ptlogin2.qq.com
     - localhost.sec.qq.com
-    - WORKGROUP
   default-nameserver:
     - 119.29.29.29
     - 223.5.5.5
@@ -66,10 +102,7 @@ dns:
     - 'https://dns.google/dns-query#DNS'
   proxy-server-nameserver:
     - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
   nameserver-policy:
-    "rule-set:ChinaMax,ChinaMax_Domain":
+    "geosite:cn,private":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "rule-set:Lan":
-      - 192.168.50.1
