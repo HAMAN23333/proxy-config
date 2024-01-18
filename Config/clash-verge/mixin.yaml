@@ -7,6 +7,13 @@ tcp-concurrent: true
 
 profile:
   store-selected: true
+  store-fake-ip: true
+
+geodata-mode: true
+geox-url:
+  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
 
 geodata-mode: true
 geox-url:
@@ -16,15 +23,14 @@ geox-url:
 
 sniffer:
   enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: false
   sniff:
-    TLS:
-      ports: [443, 8443]
     HTTP:
       ports: [80, 8080-8880]
       override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
 
 tun:
   enable: true
@@ -40,8 +46,8 @@ dns:
   listen: :53
   ipv6: true
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
   fake-ip-filter: 
+<<<<<<< HEAD:Config/Clash Verge/Mixin.yaml
     - '*'
     - '*.lan'
     - '*.local'
@@ -94,6 +100,15 @@ dns:
     - www.asusrouter.com
     - localhost.ptlogin2.qq.com
     - localhost.sec.qq.com
+=======
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - dns.msftncsi.com
+    - www.msftncsi.com
+    - www.msftconnecttest.com
+    - localhost.ptlogin2.qq.com
+>>>>>>> 3d94ddf (Update Mixin.yaml):Config/clash-verge/mixin.yaml
   default-nameserver:
     - 119.29.29.29
     - 223.5.5.5
@@ -103,6 +118,13 @@ dns:
   proxy-server-nameserver:
     - https://doh.pub/dns-query
   nameserver-policy:
+<<<<<<< HEAD:Config/Clash Verge/Mixin.yaml
     "geosite:cn,private":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
+=======
+    "geosite:category-ads-all": rcode://success
+    "geosite:cn,private":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+>>>>>>> 3d94ddf (Update Mixin.yaml):Config/clash-verge/mixin.yaml

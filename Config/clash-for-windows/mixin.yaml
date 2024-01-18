@@ -10,21 +10,9 @@ mixin:
       - '*'
       - '+.lan'
       - '+.local'
-      - '+.stun.*.*'
-      - '+.stun.*.*.*'
-      - '+.stun.*.*.*.*'
-      - '+.stun.*.*.*.*.*'
       - "*.msftconnecttest.com"
       - "*.msftncsi.com"
-      - xbox.*.*.microsoft.com
-      - "*.*.xboxlive.com"
-      - '+.nvidia.com'
-      - '+.nvidia.cn'
-      - '+.nvgs.nvidia.com'
-      - '+.nvgs.nvidia.cn'
       - localhost.ptlogin2.qq.com
-      - localhost.sec.qq.com
-      - WORKGROUP
   tun: #实现全局代理
     enable: true
     stack: gvisor

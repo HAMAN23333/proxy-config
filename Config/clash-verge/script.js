@@ -2,13 +2,13 @@
 
 function main(config) {
 
-  if (!config.proxies||!config['proxy-groups']) return config;
-  const hkRegex = /港|hk|hongkong|hong kong/;
-  const twRegex = /台|tw|taiwan/;
-  const jpRegex = /日本|jp|japan/;
-  const usRegex = /美|us|unitedstates|united states/;
-  const sgRegex = /新|sg|singapore/;
-  const otherRegex = /🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates/;
+  if (!config.proxies || !config['proxy-groups']) return config;
+  const hkRegex = /港|hk|HK|hongkong|hong kong/;
+  const twRegex = /台|tw|TW|taiwan/;
+  const jpRegex = /日本|jp|JP|japan/;
+  const usRegex = /美|us|US|unitedstates|united states/;
+  const sgRegex = /新|sg|SG|singapore/;
+  const otherRegex = /🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|HK|TW|JP|US|SG|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates/;
 
   config.proxies.forEach((proxy) => {
     config['proxy-groups'][18].proxies.push(proxy.name); //全部地区

@@ -1,11 +1,16 @@
 # Merge Template for clash verge
 # The `Merge` format used to enhance profile
+prepend-proxies:
+  - name: "WARP"
+    type: socks5
+    server: 127.0.0.1
+    port: 7950
 
 proxy-groups:
   - name: 默认
     type: select
     proxies:
-      - DIRECT
+      - WARP
       - 香港
       - 台湾
       - 日本
@@ -14,10 +19,19 @@ proxy-groups:
       - 其它地区
       - 全部节点
       - 自动选择
+      - DIRECT
   - name: DNS
     type: select
     proxies:
       - DIRECT
+      - WARP
+      - 自动选择
+      - 默认
+  - name: CDN
+    type: select
+    proxies:
+      - DIRECT
+      - WARP
       - 自动选择
       - 默认
       - 香港
@@ -26,7 +40,6 @@ proxy-groups:
       - 新加坡
       - 美国
       - 其它地区
-      - 全部节点
   - name: 🕹️ Game
     type: select
     proxies:
@@ -37,7 +50,6 @@ proxy-groups:
       - 新加坡
       - 美国
       - 其它地区
-      - 全部节点
       - DIRECT
   - name: 🍎 Apple
     type: select
@@ -49,8 +61,6 @@ proxy-groups:
       - 新加坡
       - 美国
       - 其它地区
-      - 全部节点
-      - 自动选择
       - DIRECT
   - name: ✈️ Telegram
     type: select
@@ -62,8 +72,6 @@ proxy-groups:
       - 新加坡
       - 美国
       - 其它地区
-      - 全部节点
-      - 自动选择
   - name: 💻 Microsoft
     type: select
     proxies:
@@ -74,8 +82,6 @@ proxy-groups:
       - 新加坡
       - 美国
       - 其它地区
-      - 全部节点
-      - 自动选择
       - DIRECT
   - name: 🤖 Google
     type: select
@@ -87,17 +93,13 @@ proxy-groups:
       - 新加坡
       - 美国
       - 其它地区
-      - 全部节点
-      - 自动选择
   - name: 📺 BiliBili
     type: select
     proxies:
       - 默认
       - 香港
       - 台湾
-      - 日本
       - 新加坡
-      - 其它地区
       - DIRECT
   - name: ⚡ 下载
     type: select
@@ -109,8 +111,6 @@ proxy-groups:
       - 新加坡
       - 美国
       - 其它地区
-      - 全部节点
-      - 自动选择
       - DIRECT
   - name: 🚫 广告净化
     type: select
@@ -128,21 +128,6 @@ proxy-groups:
       - 新加坡
       - 美国
       - 其它地区
-      - 全部节点
-      - 自动选择
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - 默认
-      - 香港
-      - 台湾
-      - 日本
-      - 新加坡
-      - 美国
-      - 其它地区
-      - 全部节点
-      - 自动选择
-      - DIRECT
   - name: 香港
     type: select
     proxies:
@@ -181,35 +166,38 @@ rules:
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
   - GEOSITE,private,DIRECT
   - GEOSITE,category-ads-all,🚫 广告净化
-  - GEOSITE,category-games@cn,⚡ 下载
+  - GEOSITE,cloudflare,CDN
+  - GEOSITE,apple@cn,CDN
+  - GEOSITE,microsoft@cn,CDN
+  - GEOSITE,category-games@cn,CDN
   - GEOSITE,category-games,🕹️ Game
-  - RULE-SET,Download,⚡ 下载
-  - GEOSITE,tracker,⚡ 下载
-
-  - GEOSITE,apple,🍎 Apple
-  - GEOSITE,telegram,✈️ Telegram
   - GEOSITE,github,💻 Microsoft
   - GEOSITE,microsoft,💻 Microsoft
   - GEOSITE,youtube,🤖 Google
   - GEOSITE,google,🤖 Google
+  - GEOSITE,apple,🍎 Apple
   - GEOSITE,bilibili,📺 BiliBili
+  - GEOSITE,telegram,✈️ Telegram
+  - GEOSITE,tracker,⚡ 下载
+  - RULE-SET,Download,⚡ 下载
   - GEOSITE,bahamut,台湾
-  - GEOSITE,geolocation-!cn,🐟 漏网之鱼
+  - GEOSITE,geolocation-!cn,默认
 
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT
   - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,cloudflare,CDN
   - GEOIP,google,🤖 Google
   - GEOIP,telegram,✈️ Telegram
 
   - GEOSITE,CN,📰 国内网站
   - GEOIP,CN,📰 国内网站
-  - MATCH,🐟 漏网之鱼 # 规则之外的
+  - MATCH,默认 # 规则之外的
 
 rule-providers:
 
   Download:
     type: http
     behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/HAMAN23333/ios_rule_script@master/rule/Clash/Download/Download.yaml"
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Download/Download.yaml"
     path: ./ruleset/Download.yaml
     interval: 86400
