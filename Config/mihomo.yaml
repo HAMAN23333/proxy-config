@@ -1,0 +1,103 @@
+mode: rule
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+
+dns:
+  enable: true
+  cache-algorithm: arc
+  ipv6: false
+  listen: :23453
+  default-nameserver:
+    - 223.5.5.5
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16 
+  fake-ip-filter-mode: rule
+  fake-ip-filter:
+    - geosite,category-games-!cn,real-ip
+    - geosite,geolocation-!cn,fake-ip
+    - MATCH,real-ip
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - https://119.29.29.29/dns-query
+  nameserver-policy:
+    "geosite:category-httpdns-cn": rcode://refused
+
+sniffer:
+  enable: true
+  force-dns-mapping: false
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:   
+      ports: [80, 8080-8880]
+      override-destination: false
+  force-domain:
+    - '+.v2ex.com'
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '+.apple.com'
+
+proxy-providers:
+  Example1:
+    type: http
+    interval: 3600
+    health-check: {enable: true, url: http://cp.cloudflare.com/generate_204, interval: 300}
+    url: "https://example1.com"
+    override:
+      additional-prefix: "[Example1]"
+    header:
+      User-Agent:
+      - "mihomo/1.19.23" # 某些机场会验证 mihomo 版本，如果使用第三方客户端 UA 无法对应上，会导致订阅节点无法拉取
+  Example2:
+    type: http
+    interval: 3600
+    health-check: {enable: true, url: http://cp.cloudflare.com/generate_204, interval: 300}
+    url: "https://example2.com"
+    override:
+      additional-prefix: "[Example2]"
+    header:
+      User-Agent:
+      - "v2rayN/7.19.5"
+
+proxy-groups:
+  - {name: Proxy, type: select, proxies: [HK, TW, JP, SG, US, Other]}
+  - {name: CDN, type: select, proxies: [DIRECT, PASS]}
+  - {name: Cryptocurrency, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other,DIRECT]}
+  - {name: Game, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other,DIRECT]}
+  - {name: AI, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other]}
+  - {name: Google, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other]}
+  - {name: Microsoft, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other,DIRECT]}
+  - {name: Apple, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other,DIRECT]}
+  - {name: Telegram, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other]}
+  # 分隔，下面是地区分组
+  - {name: HK, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 500, filter: "(?i)港|hongkong|hong kong"}
+  - {name: TW, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 500, filter: "(?i)台|taiwan"}
+  - {name: JP, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 1000, filter: "(?i)日|japan"}
+  - {name: US, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 1000, filter: "(?i)美|unitedstates|united states"}
+  - {name: SG, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 1000, filter: "(?i)(新|singapore)"}
+  - {name: Other, type: select , include-all-providers: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hongkong|台|taiwan|日|japan|新|singapore|美|unitedstates)).*"}
+
+rules:
+  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # 屏蔽 QUIC
+  - GEOSITE,category-games-!cn@cn,CDN
+  - GEOSITE,apple@cn,CDN
+  - GEOSITE,microsoft@cn,CDN
+  - GEOSITE,category-games-!cn,Game
+  - GEOSITE,category-cryptocurrency,Cryptocurrency
+  - GEOSITE,apple,Apple
+  - GEOSITE,microsoft,Microsoft
+  - GEOSITE,google,Google
+  - GEOSITE,category-ai-!cn,AI
+  - GEOSITE,telegram,Telegram
+  - GEOSITE,tracker,Proxy
+  - GEOSITE,cn,DIRECT
+  - GEOIP,apple,Apple
+  - GEOIP,google,Google
+  - GEOIP,telegram,Telegram
+  - GEOIP,cn,DIRECT
+  - MATCH,Proxy
