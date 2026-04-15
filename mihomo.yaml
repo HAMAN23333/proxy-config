@@ -15,6 +15,9 @@ dns:
   fake-ip-range: 198.18.0.1/16 
   fake-ip-filter-mode: rule
   fake-ip-filter:
+    - geosite,category-games-!cn@cn,real-ip
+    - geosite,apple@cn,real-ip
+    - geosite,microsoft@cn,real-ip
     - geosite,geolocation-!cn,fake-ip
     - MATCH,real-ip
   nameserver:
