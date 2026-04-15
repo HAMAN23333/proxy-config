@@ -15,7 +15,9 @@ dns:
   fake-ip-range: 198.18.0.1/16 
   fake-ip-filter-mode: rule
   fake-ip-filter:
-    - geosite,category-games-!cn,real-ip
+    - geosite,category-games-!cn@cn,real-ip
+    - geosite,microsoft@cn,real-ip
+    - geosite,apple@cn,real-ip
     - geosite,geolocation-!cn,fake-ip
     - MATCH,real-ip
   nameserver:
@@ -75,11 +77,11 @@ proxy-groups:
   - {name: Apple, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other,DIRECT]}
   - {name: Telegram, type: select, proxies: [Proxy,HK,TW,JP,SG,US,Other]}
   # 分隔，下面是地区分组
-  - {name: HK, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 500, filter: "(?i)港|hongkong|hong kong"}
-  - {name: TW, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 500, filter: "(?i)台|taiwan"}
-  - {name: JP, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 1000, filter: "(?i)日|japan"}
-  - {name: US, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 1000, filter: "(?i)美|unitedstates|united states"}
-  - {name: SG, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 1000, filter: "(?i)(新|singapore)"}
+  - {name: HK, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 400, filter: "(?i)港|hongkong|hong kong"}
+  - {name: TW, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 400, filter: "(?i)台|taiwan"}
+  - {name: JP, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 400, filter: "(?i)日|japan"}
+  - {name: US, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 800, filter: "(?i)美|unitedstates|united states"}
+  - {name: SG, type: fallback, url: 'https://www.gstatic.com/generate_204', interval: 120, include-all-providers: true, max-failed-times: 3, timeout: 800, filter: "(?i)(新|singapore)"}
   - {name: Other, type: select , include-all-providers: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hongkong|台|taiwan|日|japan|新|singapore|美|unitedstates)).*"}
 
 rules:
