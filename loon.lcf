@@ -1,0 +1,95 @@
+[General]
+dns-server = system,233.5.5.5,119.29.29.29
+geoip-url = https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.db
+
+domain-reject-mode = DNS
+sni-sniffing = true
+doh-server = https://doh.pub/dns-query,https://dns.alidns.com/dns-query
+
+udp-fallback-mode = REJECT
+disable-stun = true
+
+interface-mode = auto
+ssid-trigger = "default":rule, "cellular":rule,"XXXWIFI":DIRECT
+ip-mode = v4-only
+ipv6-vif = auto
+
+disconnect-on-policy-change = false
+
+resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
+
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,e.crashlynatics.com
+bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
+real-ip = *.apple.com,*apple.com,*.cn
+
+allow-wifi-access = false
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+
+proxy-test-url = http://bing.com/generate_204
+internet-test-url = http://wifi.vivo.com.cn/generate_204
+test-timeout = 3
+
+[Proxy]
+
+[Remote Proxy]
+example = https://example.com,udp=true,block-quic=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=true,flexible-sni=false
+
+[Proxy Chain]
+
+[Proxy Group]
+Available = select,HK,TW,JP,US,SG,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
+AI = select,HK,TW,SG,JP,US,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AI.png
+Apple Music = select,Apple,DIRECT,img-url = https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Apple_Music.png
+Apple = select,HK,TW,SG,JP,US,Available,DIRECT,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+Google = select,Available,HK,TW,SG,JP,US,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+HK = fallback,HK_Filter,interval = 300,max-timeout = 1000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+TW = fallback,TW_Filter,interval = 300,max-timeout = 1000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+SG = fallback,SG_Filter,interval = 300,max-timeout = 1000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+JP = fallback,JP_Filter,interval = 300,max-timeout = 1000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+US = fallback,US_Filter,interval = 300,max-timeout = 1000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+
+[Remote Filter]
+ALL_Filter = NameRegex, FilterKey = ".*"
+HK_Filter = NameRegex, FilterKey = "(?i)(港|HK|Hong)"
+TW_Filter = NameRegex, FilterKey = "(?i)(台|TW|Tai)"
+JP_Filter = NameRegex, FilterKey = "(?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)"
+KR_Filter = NameRegex, FilterKey = "(?i)(KR|Korea|KOR|首尔|韩|韓)"
+US_Filter = NameRegex, FilterKey = "(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
+SG_Filter = NameRegex, FilterKey = "(?i)(新加坡|坡|狮城|SG|Singapore)"
+
+[Rule]
+GEOIP,CN,DIRECT
+#Type:DOMAIN-SUFFIX,DOMAIN,DOMAIN-KEYWORD,USER-AGENT,URL-REGEX,IP-CIDR
+#Strategy:DIRECT,PROXY,REJECT
+#Options:no-resolve(only for IP-CIDR,IP-CIDR2,GEOIP,IP-ASN)
+
+FINAL,Available
+
+[Remote Rule]
+https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/category-httpdns-cn.list, policy=REJECT, tag=HTTPDNS, enabled=true
+https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/category-ai-!cn.list, policy=AI, tag=AI, enabled=true
+https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geosite/classical/applemusic.list, policy=Apple Music, tag=AppleMusic, enabled=true
+https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/apple.list, policy=Apple, tag=Apple, enabled=true
+https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/google.list, policy=Google, tag=Google, enabled=true
+https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/cn.list, policy=DIRECT, tag=CN, enabled=true
+
+[Rewrite]
+
+[Script]
+
+[Plugin]
+https://raw.githubusercontent.com/sub-store-org/Sub-Store/master/config/Loon.plugin, policy=Available, enabled=true
+https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/modules/script-hub.loon.plugin, policy=Available, enabled=false
+https://raw.githubusercontent.com/chavyleung/scripts/master/box/rewrite/boxjs.rewrite.loon.plugin, policy=Available, enabled=false
+https://kelee.one/Tool/Loon/Lpx/BlockAdvertisers.lpx, enabled=true
+https://github.com/BiliUniverse/ADBlock/releases/download/v0.6.24/BiliBili.ADBlock.plugin, enabled=true
+https://github.com/BiliUniverse/Enhanced/releases/download/v0.5.13/BiliBili.Enhanced.plugin, enabled=true
+https://github.com/BiliUniverse/Global/releases/download/v0.8.20/BiliBili.Global.plugin, enabled=true
+https://kelee.one/Tool/Loon/Lpx/YouTube_remove_ads.lpx, enabled=false
+https://kelee.one/Tool/Loon/Lpx/CatEarFM_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/EcovacsHome_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Amap_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/RedPaper_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/PinDuoDuo_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx, enabled=true
